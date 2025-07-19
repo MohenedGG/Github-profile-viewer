@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style/normalize.css">
+    <link rel="stylesheet" href="style/main.css">
+    <title>Github Profile Viewer</title>
+</head>
+<body>
+    <div id="githubForm">
+        <label for="username">Enter GitHub Username:</label>
+        <input type="text" id="username" name="username" required>
+        <button type="submit" id="submitUserName">View Profile</button>
+    </div>
+    <div class="profile" id="profile"></div>
+    <div class="repos">
+    <!-- <table>
+            <thead>
+                <th>N</th>
+                <th>Name</th>
+                <th>Owner</th>
+            </thead>
+            <tbody class="repo">
+                <td>1</td>
+                <td>Repository Name</td>
+                <td>Repository Owner</td>
+            </tbody>
+        </table> -->
+    </div>
+    <script type="module" src="scripts/main.js"></script>
+</body>
+</html>

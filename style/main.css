@@ -1,0 +1,135 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+body {
+    font-family: Arial, sans-serif;
+    background-color: #0d1117;
+    color: #c9d1d9;
+}
+#githubForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 50px;
+}
+#githubForm label {
+    margin-bottom: 10px;
+    font-size: 16px;
+    color: #c9d1d9;
+}
+#username {
+    padding: 10px;
+    border: 1px solid #30363d;
+    border-radius: 5px;
+    background-color: #161b22;
+    color: #c9d1d9;
+    margin-bottom: 10px;
+}
+#username:focus {
+    outline: none;
+    border-color: #58a6ff;
+}
+#submitUserName {
+    background-color: #238636;
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+.notFoundMsg {
+    text-align: center;
+    margin-top: 100px;
+    color: #f11207;
+}
+.profile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 50px;
+    color: #c9d1d9;
+}
+.profile img {
+    border-radius: 50%;
+    width: 75px;
+    height: 75px;
+    border: 2px solid #161b22;
+}
+.profile .nameAndPhoto {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 20px;
+    color: #c9d1d9;
+}
+.profile .nameAndPhoto #profileName {
+    margin-left: 10px;
+    font-size: 24px;
+    margin-right: 100px;
+}
+.profile .nameAndPhoto #profileName:hover {
+    color: #58a6ff;
+    text-decoration: underline;
+    cursor: pointer;
+}
+.profile .infos {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    margin-top: 20px;
+    margin-bottom: 25px;
+}
+a {
+    color: #58a6ff;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+.follow {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    color: #c9d1d9;
+    margin-bottom: 20px;
+}
+.repos {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+}
+.repos h2 {
+    color: #c9d1d9;
+    margin-bottom: 20px;
+    margin-top: 10px;
+}
+.repos table {
+    width: 80%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+.repos table th, .repos table td {
+    border: 1px solid #30363d;
+    padding: 10px;
+    text-align: left;
+}
+.repos .repo {
+    background-color: #161b22;
+    border: 1px solid #30363d;
+    border-radius: 5px;
+    padding: 15px;
+    width: 80%;
+    margin-bottom: 10px;
+}
+#ownerName {
+    color: #58a6ff;
+    text-decoration: none;
+    cursor: pointer;
+}
+#ownerName:hover {
+    text-decoration: underline;
+}
