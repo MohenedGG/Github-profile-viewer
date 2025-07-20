@@ -46,27 +46,39 @@ function reposWrite(num, name, url, owner) {
 }
 
 //apis 
-let canShow = true;
+let canShow;
 async function showUser(userName) {
+    canShow = true
+    let div = document.getElementById("profile");
+    if(!connected()) {
+        div.innerHTML = "";
+        noInternet();
+        canShow = false;
+        return;
+    }
     try {
         const info = await getUser(userName);
-        let div = document.getElementById("profile");
-        div.innerHTML = prfileWrite(info.name, info.avatar_url, info.login, info.bio, info.location, info.followers, info.following, info.url)
+        div.innerHTML = prfileWrite(info.name, info.avatar_url, info.login, info.bio, info.location, info.followers, info.following, info.html_url)
 
     } catch {
-        let notFoundMsg = document.createElement("h2");
-        notFoundMsg.innerText = "User not found!";
-        notFoundMsg.className = "notFoundMsg";
-        document.body.append(notFoundMsg);
+        div.innerHTML = "";
         canShow = false;
+        let userName = document.getElementById("username").value;
+        if(userName.trim() !== "") {
+            let notFoundMsg = document.createElement("h2");
+            notFoundMsg.innerText = "User not found!";
+            notFoundMsg.className = "notFoundMsg";
+            document.body.append(notFoundMsg);
+        }
+        console.log(canShow)
     }
 }
 
 async function showRepo(userName) {
+    let div = document.querySelector(".repos");
     if(canShow) {
         try {
             const repos = await getRepo(userName);
-            let div = document.querySelector(".repos");
             div.innerHTML = `
             <h2>Repositories</h2>
             <table>
@@ -82,14 +94,45 @@ async function showRepo(userName) {
         } catch {
             console.log("User not found!")
         }
+    } else {
+        div.innerHTML = ``;
     }
+}
+
+//check internet function
+function connected() {
+    return window.navigator.onLine;
+}
+
+//no internet msg
+function noInternet() {
+    let div = document.createElement("div");
+    let img = document.createElement("img");
+    let h2 = document.createElement("h2");
+    let button = document.createElement("button");
+    div.id = "noInternet";
+    img.id = "noInternetImg";
+    h2.id = "noInternetMsg"
+    button.id = "reload";
+    img.src = "photos/noWifi.png";
+    img.alt = "no internet";
+    h2.innerText = "Please check your internet connection!"
+    button.innerText = "reload page";
+    button.onclick = () => location.reload();
+    div.append(img);
+    div.append(h2);
+    div.append(button);
+    document.body.append(div);
 }
 
 //show information on click
 let submitButton = document.getElementById("submitUserName");
 
-function search(userName) {
-    showUser(userName);
+async function search(userName) {
+    if(document.querySelector(".notFoundMsg") !== null) {
+        document.querySelector(".notFoundMsg").remove();
+    }
+    await showUser(userName);
     showRepo(userName);
 }
 
@@ -97,3 +140,10 @@ submitButton.onclick = () => {
     let userName = document.getElementById("username").value;
     search(userName);
 }
+document.onkeydown = (event) => {
+    if(event.key === "Enter") {
+    let userName = document.getElementById("username").value;
+    search(userName);
+    }
+}
+console.log(connected())

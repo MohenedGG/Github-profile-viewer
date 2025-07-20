@@ -133,3 +133,24 @@ a:hover {
 #ownerName:hover {
     text-decoration: underline;
 }
+#noInternet {
+    text-align: center;
+    margin-top: 50px;
+    color: #f11207;
+}
+#noInternetImg {
+    width: 200px;
+    height: 200px;
+    display: block;
+    margin: 0 auto;
+    color: #f11207;
+}
+#noInternet button {
+    background-color: #238636;
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 30px;
+}
