@@ -122,7 +122,7 @@ async function noInternet() {
     img.id = "noInternetImg";
     h2.id = "noInternetMsg"
     button.id = "reload";
-    img.src = "photos/noWifi.png";
+    img.src = "./photos/noWifi.png";
     img.alt = "no internet";
     h2.innerText = "Please check your internet connection!"
     button.innerText = "reload page";
