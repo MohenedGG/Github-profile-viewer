@@ -52,25 +52,24 @@ async function showUser(userName) {
     let div = document.getElementById("profile");
     if(!connected()) {
         div.innerHTML = "";
-        noInternet();
+        await noInternet();
         canShow = false;
-        return;
-    }
-    try {
-        const info = await getUser(userName);
-        div.innerHTML = prfileWrite(info.name, info.avatar_url, info.login, info.bio, info.location, info.followers, info.following, info.html_url)
+    } else {
+        try {
+            const info = await getUser(userName);
+            div.innerHTML = prfileWrite(info.name, info.avatar_url, info.login, info.bio, info.location, info.followers, info.following, info.html_url)
 
-    } catch {
-        div.innerHTML = "";
-        canShow = false;
-        let userName = document.getElementById("username").value;
-        if(userName.trim() !== "") {
-            let notFoundMsg = document.createElement("h2");
-            notFoundMsg.innerText = "User not found!";
-            notFoundMsg.className = "notFoundMsg";
-            document.body.append(notFoundMsg);
+        } catch {
+            div.innerHTML = "";
+            canShow = false;
+            let userName = document.getElementById("username").value;
+            if(userName.trim() !== "") {
+                let notFoundMsg = document.createElement("h2");
+                notFoundMsg.innerText = "User not found!";
+                notFoundMsg.className = "notFoundMsg";
+                document.body.append(notFoundMsg);
+            }
         }
-        console.log(canShow)
     }
 }
 
@@ -105,7 +104,7 @@ function connected() {
 }
 
 //no internet msg
-function noInternet() {
+async function noInternet() {
     let div = document.createElement("div");
     let img = document.createElement("img");
     let h2 = document.createElement("h2");
@@ -137,6 +136,7 @@ async function search(userName) {
 }
 
 submitButton.onclick = () => {
+    console.log(connected());
     let userName = document.getElementById("username").value;
     search(userName);
 }
@@ -146,4 +146,3 @@ document.onkeydown = (event) => {
     search(userName);
     }
 }
-console.log(connected())
