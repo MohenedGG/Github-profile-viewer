@@ -1,4 +1,4 @@
-import {getUser, getRepo} from "./apis.js";
+import {getUser, getRepo, connectAPI} from "./apis.js";
 
 //creat profile function
 function prfileWrite(name, photoUrl, userName, Bio, loc, followers, following, url) {
@@ -50,7 +50,7 @@ let canShow;
 async function showUser(userName) {
     canShow = true
     let div = document.getElementById("profile");
-    if(!connected()) {
+    if(!await connected()) {
         div.innerHTML = "";
         await noInternet();
         canShow = false;
@@ -99,9 +99,18 @@ async function showRepo(userName) {
 }
 
 //check internet function
-function connected() {
-    return window.navigator.onLine;
-}
+async function connected() {
+    try {
+      const res = await fetch(connectAPI);
+      if (res.ok) {
+        return true;
+      } else {
+        return false;
+      }
+    } catch {
+      return false;
+    }
+  }
 
 //no internet msg
 async function noInternet() {
@@ -121,7 +130,15 @@ async function noInternet() {
     div.append(img);
     div.append(h2);
     div.append(button);
-    document.body.append(div);
+    let mainDiv = document.getElementById("profile");
+    mainDiv.append(div);
+}
+
+//check internet on open the page
+window.onload = async () => {
+    if (!await connected()) {
+        noInternet();
+    }
 }
 
 //show information on click
@@ -135,8 +152,7 @@ async function search(userName) {
     showRepo(userName);
 }
 
-submitButton.onclick = () => {
-    console.log(connected());
+submitButton.onclick = async () => {
     let userName = document.getElementById("username").value;
     search(userName);
 }

@@ -12,3 +12,4 @@ export async function getRepo(UserName) {
     }
     return await data.json();
 }
+export const connectAPI = "https://jsonplaceholder.typicode.com/posts/1";
