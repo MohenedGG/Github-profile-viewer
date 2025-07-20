@@ -141,6 +141,15 @@ window.onload = async () => {
     }
 }
 
+//preload no unternt img
+const preloadImage = (url) => {
+  const img = new Image();
+  img.src = url;
+};
+
+preloadImage("./photos/noWifi.png");
+
+
 //show information on click
 let submitButton = document.getElementById("submitUserName");
 
